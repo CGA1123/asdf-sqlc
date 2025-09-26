@@ -28,7 +28,21 @@ install_sqlc() {
 }
 
 get_arch() {
-  uname | tr '[:upper:]' '[:lower:]'
+  uname -s | tr '[:upper:]' '[:lower:]'
+}
+
+get_cpu() {
+  local uname_arch=$(uname -m)
+
+  if [[ "$uname_arch" = "aarch64" ]]; then
+      uname_arch="arm64"
+  fi
+
+  if [[ "$uname_arch" = "x86_64" ]]; then
+      uname_arch="amd64"
+  fi
+
+  printf $uname_arch
 }
 
 get_download_url() {
