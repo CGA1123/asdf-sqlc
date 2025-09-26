@@ -50,7 +50,7 @@ get_download_url() {
   local platform
   local cpu
   platform="$(get_arch)"
-  cpu="amd64"
+  cpu="$(get_cpu)"
 
   echo "https://github.com/kyleconroy/sqlc/releases/download/v${version}/sqlc_${version}_${platform}_${cpu}.tar.gz"
 }
