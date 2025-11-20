@@ -18,7 +18,7 @@ install_sqlc() {
   mkdir -p "${bin_install_path}"
 
   echo "Downloading sqlc from ${download_url}"
-  if curl -L -sf "$download_url" -o "$install_path/sqlc.tar.gz"; then
+  if curl --retry 5 -L -sf "$download_url" -o "$install_path/sqlc.tar.gz"; then
     tar xzf "${install_path}/sqlc.tar.gz" -C "${install_path}"
     mv "${install_path}/sqlc" "${bin_install_path}/sqlc"
     rm "${install_path}/sqlc.tar.gz"
